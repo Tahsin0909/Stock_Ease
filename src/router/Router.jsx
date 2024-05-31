@@ -3,13 +3,14 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import PrivateRoutes from "./PrivateRoute";
 
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home/> ,
+        element: <PrivateRoutes> <Home/> </PrivateRoutes>  ,
     },
     {
         path: '/logIn',

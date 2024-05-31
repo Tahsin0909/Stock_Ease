@@ -32,7 +32,7 @@ const Login = () => {
                 localStorage.setItem('AuthUser', AuthUserStringify)
                 navigate('/')
                 resolve()
-            }, 3000)
+            }, 1000)
         })
     }
     // const { colorMode } = useColorMode()

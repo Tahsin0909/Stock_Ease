@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Loading from "../Components/Loader/Loading";
 
 
 
@@ -24,7 +25,7 @@ const PrivateRoutes = ({ children }) => {
 
 
     if (loading) {
-        return <p>Loading</p>
+        return <Loading/>
     }
     if (authUser) {
         return children

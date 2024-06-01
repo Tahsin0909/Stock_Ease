@@ -11,7 +11,7 @@ const useActiveOrder = () => {
             const fetchedData = await response.json();
             // console.log(fetchedData);
 
-            const getNewProducts = localStorage.getItem('newProducts');
+            const getNewProducts =await localStorage.getItem('newProducts');
             const newProducts = JSON.parse(getNewProducts);
 
             if (newProducts) {

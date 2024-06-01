@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Box, Button, FormControl, FormLabel, Grid, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Center, FormControl, FormLabel, Grid, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
 import TableLoader from "../Loader/TableLoader";
 import { time } from "../../Helper/time";
 import { HiDotsVertical } from "react-icons/hi";
@@ -47,7 +47,6 @@ const OrderTable = ({ data, isPending, refetch }) => {
                                     <Td>$ {order.total_amount}</Td>
                                     <Td>{time(order.modified_date)}</Td>
                                     <Td>
-
                                         <HiDotsVertical onClick={() => handleDotClick(order)} color={colorMode === 'light' ? 'blue' : 'white'} />
                                     </Td>
                                 </Tr>)
@@ -91,7 +90,7 @@ const OrderTable = ({ data, isPending, refetch }) => {
 
 
                             {/* Render items as form fields */}
-                            <FormLabel mt={[1,2]} fontSize={[12, 13]}>Products:</FormLabel>
+                            <FormLabel mt={[1, 2]} fontSize={[12, 13]}>Products:</FormLabel>
                             <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
 
                                 {selectedOrder?.items.map((data, idx) => (

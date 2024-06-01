@@ -15,8 +15,8 @@ const PrivateRoutes = ({ children }) => {
         setTimeout(() => {
             const getAuthUser = localStorage.getItem('AuthUser')
             const AuthUser = JSON.parse(getAuthUser)
-            console.log(AuthUser);
-            console.log(getAuthUser);
+            // console.log(AuthUser);
+            // console.log(getAuthUser);
             setLoading(false);
             setAuthUser(AuthUser);
         }, 2000); // 2 seconds delay
@@ -27,7 +27,7 @@ const PrivateRoutes = ({ children }) => {
     if (loading) {
         return <Loading/>
     }
-    if (authUser) {
+    if (authUser.email) {
         return children
     }
     return <Navigate to={`/logIn`} replace={true} />

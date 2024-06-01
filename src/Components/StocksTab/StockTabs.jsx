@@ -1,7 +1,9 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import OrderTable from "../OrderTable/OrderTable";
+import useActiveOrder from "../../Hooks/useActiveOrder";
 
 const StockTabs = () => {
+    const [activeOrderData, isPending, refetch] = useActiveOrder()
     return (
         <Tabs variant='unstyled' mt={[10, 20]} w={'full'}>
             <TabList>
@@ -14,10 +16,10 @@ const StockTabs = () => {
             </TabList>
             <TabPanels  mt={[3, 5]} rounded={'xl'} shadow={'xl'}>
                 <TabPanel>
-                    <OrderTable data={"Active"} />
+                    <OrderTable data={activeOrderData} isPending={isPending} refetch={refetch} />
                 </TabPanel>
                 <TabPanel>
-                    <OrderTable data={'Completed'}/>
+                    <OrderTable />
                 </TabPanel>
             </TabPanels>
         </Tabs>

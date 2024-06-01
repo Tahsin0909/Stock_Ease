@@ -27,7 +27,7 @@ const PrivateRoutes = ({ children }) => {
     if (loading) {
         return <Loading/>
     }
-    if (authUser.email) {
+    if (authUser?.email) {
         return children
     }
     return <Navigate to={`/logIn`} replace={true} />

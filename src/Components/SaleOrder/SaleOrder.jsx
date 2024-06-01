@@ -1,10 +1,15 @@
-import { Box, Button, Center, FormControl, FormLabel, Grid, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
+/* eslint-disable no-unused-vars */
+import { Box, Button, FormControl, FormLabel, Grid, Input, Modal, ModalBody, ModalContent, ModalOverlay, useColorMode, useDisclosure } from "@chakra-ui/react";
 import Multiselect from "multiselect-react-dropdown";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getCurrentISOTime } from "../../Helper/getTime";
+import useActiveOrder from "../../Hooks/useActiveOrder";
 
 const SaleOrder = () => {
+    const [activeOrderData, isLoading, orderRefetch] = useActiveOrder()
+
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [products, setProducts] = useState(null)
@@ -37,7 +42,7 @@ const SaleOrder = () => {
     }
 
 
-    function onSubmit(data) {
+    const onSubmit = async (data) => {
         // console.log(data, selected);
         const newProducts = {
 
@@ -54,7 +59,8 @@ const SaleOrder = () => {
         }
         const newProductsStringify = JSON.stringify(newProducts)
         localStorage.setItem('newProducts', newProductsStringify)
-        // console.log(newProducts);
+        await orderRefetch(); // Await refetch to ensure it completes
+        onClose();
     }
 
     return (
@@ -110,25 +116,6 @@ const SaleOrder = () => {
                                     />
                                 </FormControl>
                             </Box>
-
-
-                            {/* Grand Total and Payment Status */}
-                            {/* <Box>
-                                <FormControl mb={2}>
-                                    <FormLabel fontSize={[12, 13]}>Payment Status:</FormLabel>
-                                    <RadioGroup defaultValue='2'>
-                                        <Stack spacing={5} direction='row'>
-                                            <Radio {...register('payments')} colorScheme='red' value='false'>
-                                                Pending
-                                            </Radio>
-                                            <Radio {...register('payments')} colorScheme='green' value='true'>
-                                                Paid
-                                            </Radio>
-                                        </Stack>
-                                    </RadioGroup>
-
-                                </FormControl>
-                            </Box> */}
                             <Button mt={4} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'}>
                                 Submit
                             </Button>

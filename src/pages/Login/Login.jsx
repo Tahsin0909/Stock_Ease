@@ -26,7 +26,7 @@ const Login = () => {
     function onSubmit(values) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                console.log(values);
+                // console.log(values);
                 const AuthUser = { email: values.email, password: values.password }
                 const AuthUserStringify = JSON.stringify(AuthUser)
                 localStorage.setItem('AuthUser', AuthUserStringify)

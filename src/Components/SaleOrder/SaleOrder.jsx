@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Box, Button, FormControl, FormLabel, Grid, Input, Modal, ModalBody, ModalContent, ModalOverlay, useColorMode, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, Grid, Input, Modal, ModalBody, ModalContent, ModalOverlay, useColorMode, useDisclosure } from "@chakra-ui/react";
 import Multiselect from "multiselect-react-dropdown";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ const SaleOrder = () => {
     const {
         handleSubmit,
         register,
-        formState: { isSubmitting },
+        formState: { errors, isSubmitting },
     } = useForm()
 
     const getAuthUser = localStorage.getItem('AuthUser')
@@ -93,9 +93,10 @@ const SaleOrder = () => {
                                 </FormControl>
                             </Grid>
                             <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
-                                <FormControl >
+                                <FormControl isInvalid={errors.id}>
                                     <FormLabel fontSize={[12, 13]}>Customer ID:</FormLabel>
-                                    <Input  {...register('id')} size={["sm"]} type="text" />
+                                    <Input  {...register('id', { required: 'Id is required' })} size={["sm"]} type="text" />
+                                    <FormErrorMessage>{errors.id && errors.id.message}</FormErrorMessage>
                                 </FormControl>
                                 <FormControl >
                                     <FormLabel fontSize={[12, 13]}>Order Date:</FormLabel>
@@ -106,18 +107,19 @@ const SaleOrder = () => {
 
                             {/* Render items as form fields */}
                             <Box mb={3} rounded={"20px"} color={colorMode === 'light' ? 'black' : 'black'} >
-                                <FormControl mb={0}>
+                                <FormControl mb={0} isInvalid={errors.products}>
                                     <FormLabel color={colorMode === 'light' ? 'black' : 'white'} fontSize={[12, 13]}>Product Name:</FormLabel>
                                     {/* <Input size={["sm"]} type="text" /> */}
                                     <Multiselect
                                         textColor={'black'}
-                                        {...register('products')}
+                                        {...register('products', { required: 'Products is required' })}
                                         options={products} // Options to display in the dropdown
                                         // selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
                                         onSelect={setSelected}
                                         // onRemove={this.onRemove} // Function will trigger on remove event
                                         displayValue={"product_name"} // Property name to display in the dropdown options
                                     />
+                                    <FormErrorMessage>{errors.products && errors.products.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
                             <Button mt={4} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'}>

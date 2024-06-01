@@ -6,7 +6,7 @@ const useCompletedOrder = () => {
         queryKey: ['CompletedOrder'],
         queryFn: async () => {
 
-            const response = await fetch('/public/completedOrder.json')
+            const response = await fetch('/completedOrder.json')
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

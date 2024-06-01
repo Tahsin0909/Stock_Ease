@@ -30,14 +30,31 @@ const SaleOrder = () => {
     }, [])
 
 
+    const { colorMode } = useColorMode()
 
+    const TotalAmount = (order) => {
+        return order.reduce((total, item) => total + item.total_price, 0);
+    }
 
 
     function onSubmit(data) {
-        console.log(data, selected);
-        // const newProducts = {
-            
-        // }
+        // console.log(data, selected);
+        const newProducts = {
+
+            order_id: 1001,
+            customer_id: data.id,
+            customer_name: AuthUser?.email,
+            order_date: data.date,
+            items: selected,
+            total_amount: TotalAmount(selected),
+            paid: false,
+            invoice_no: data.invoice,
+            invoice_date: data.date,
+            modified_date: data.date
+        }
+        const newProductsStringify = JSON.stringify(newProducts)
+        localStorage.setItem('newProducts', newProductsStringify)
+        // console.log(newProducts);
     }
 
     return (
@@ -78,9 +95,9 @@ const SaleOrder = () => {
 
 
                             {/* Render items as form fields */}
-                            <Box mb={3} rounded={"20px"}>
+                            <Box mb={3} rounded={"20px"} color={colorMode === 'light' ? 'black' : 'black'} >
                                 <FormControl mb={0}>
-                                    <FormLabel fontSize={[12, 13]}>Product Name:</FormLabel>
+                                    <FormLabel color={colorMode === 'light' ? 'black' : 'white'} fontSize={[12, 13]}>Product Name:</FormLabel>
                                     {/* <Input size={["sm"]} type="text" /> */}
                                     <Multiselect
                                         textColor={'black'}
@@ -96,7 +113,7 @@ const SaleOrder = () => {
 
 
                             {/* Grand Total and Payment Status */}
-                            <Box>
+                            {/* <Box>
                                 <FormControl mb={2}>
                                     <FormLabel fontSize={[12, 13]}>Payment Status:</FormLabel>
                                     <RadioGroup defaultValue='2'>
@@ -111,7 +128,7 @@ const SaleOrder = () => {
                                     </RadioGroup>
 
                                 </FormControl>
-                            </Box>
+                            </Box> */}
                             <Button mt={4} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'}>
                                 Submit
                             </Button>

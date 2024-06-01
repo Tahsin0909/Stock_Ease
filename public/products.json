@@ -1,0 +1,102 @@
+[
+    {
+        "sku_id": 248,
+        "product_id": 209,
+        "product_name": "Cotton T-Shirt",
+        "category": "Clothing",
+        "brand": "Brand A",
+        "selling_price": 20,
+        "quantity": 3,
+        "total_price": 60
+    },
+    {
+        "sku_id": 247,
+        "product_id": 210,
+        "product_name": "Leather Wallet",
+        "category": "Accessories",
+        "brand": "Brand B",
+        "selling_price": 35,
+        "quantity": 2,
+        "total_price": 70
+    },
+    {
+        "sku_id": 246,
+        "product_id": 211,
+        "product_name": "Denim Jeans",
+        "category": "Clothing",
+        "brand": "Brand C",
+        "selling_price": 50,
+        "quantity": 1,
+        "total_price": 50
+    },
+    {
+        "sku_id": 245,
+        "product_id": 212,
+        "product_name": "Sneakers",
+        "category": "Footwear",
+        "brand": "Brand D",
+        "selling_price": 45,
+        "quantity": 2,
+        "total_price": 90
+    },
+    {
+        "sku_id": 244,
+        "product_id": 213,
+        "product_name": "Backpack",
+        "category": "Accessories",
+        "brand": "Brand E",
+        "selling_price": 60,
+        "quantity": 1,
+        "total_price": 60
+    },
+    {
+        "sku_id": 243,
+        "product_id": 214,
+        "product_name": "Hoodie",
+        "category": "Clothing",
+        "brand": "Brand F",
+        "selling_price": 40,
+        "quantity": 2,
+        "total_price": 80
+    },
+    {
+        "sku_id": 242,
+        "product_id": 215,
+        "product_name": "Sunglasses",
+        "category": "Accessories",
+        "brand": "Brand G",
+        "selling_price": 25,
+        "quantity": 3,
+        "total_price": 75
+    },
+    {
+        "sku_id": 241,
+        "product_id": 216,
+        "product_name": "Tennis Shoes",
+        "category": "Footwear",
+        "brand": "Brand H",
+        "selling_price": 55,
+        "quantity": 1,
+        "total_price": 55
+    },
+    {
+        "sku_id": 240,
+        "product_id": 217,
+        "product_name": "Beanie",
+        "category": "Accessories",
+        "brand": "Brand I",
+        "selling_price": 15,
+        "quantity": 4,
+        "total_price": 60
+    },
+    {
+        "sku_id": 239,
+        "product_id": 218,
+        "product_name": "Polo Shirt",
+        "category": "Clothing",
+        "brand": "Brand J",
+        "selling_price": 30,
+        "quantity": 2,
+        "total_price": 60
+    }
+]

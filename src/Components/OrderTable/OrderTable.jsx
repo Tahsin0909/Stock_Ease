@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Box, Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Grid, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
 import TableLoader from "../Loader/TableLoader";
 import { time } from "../../Helper/time";
 import { HiDotsVertical } from "react-icons/hi";
@@ -61,58 +61,96 @@ const OrderTable = ({ data, isPending, refetch }) => {
                 onClose={onClose}
                 isOpen={isOpen}
                 motionPreset='slideInBottom'
+                size={['sm', "2xl"]}
+
             >
                 <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>
-                        <Box mb={4}>
-                            <Text>
-                                {selectedOrder?.customer_name}
-                            </Text>
-                            <Text >
-                                {selectedOrder?.invoice_no}
-                            </Text>
-                        </Box>
-
-                        <Text fontSize={'15px'}>
-                            Customer Id : {selectedOrder?.customer_id}
-                        </Text>
-                        <Text fontSize={'15px'}>
-                            Order Date: {time(selectedOrder?.order_date)}
-                        </Text>
-                    </ModalHeader>
-                    <ModalCloseButton />
+                <ModalContent >
                     <ModalBody>
-                        {
-                            selectedOrder?.items.map((data, idx) => <Box fontSize={'15px'} key={idx}>
-                                <Text>
-                                    SKU ID: {data.sku_id}
-                                </Text>
-                                <Text>
-                                    PRODUCT NAME: {data.product_name}
-                                </Text>
-                                <Text>
-                                    PRODUCT ID {data.product_id}
-                                </Text>
-                                <Text>
-                                    CATEGORY: {data.category}
-                                </Text>
-                                <Text>
-                                    BRAND: {data.brand}
-                                </Text>
-                                <Text>
-                                    QUANTITY: {data.quantity}
-                                </Text>
-                                <Text>
-                                    TOTAL PRICE: {data.total_price}
-                                </Text>
+                        <form >
+                            <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]} mb={4}>
+                                <FormControl >
+                                    <FormLabel fontSize={[12, 13]}>Customer Name:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={selectedOrder?.customer_name} readOnly />
+                                </FormControl>
+                                <FormControl >
+                                    <FormLabel fontSize={[12, 13]}>Invoice No:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={selectedOrder?.invoice_no} readOnly />
+                                </FormControl>
+                            </Grid>
+                            <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
+                                <FormControl >
+                                    <FormLabel fontSize={[12, 13]}>Customer ID:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={selectedOrder?.customer_id} readOnly />
+                                </FormControl>
+                                <FormControl >
+                                    <FormLabel fontSize={[12, 13]}>Order Date:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={time(selectedOrder?.order_date)} readOnly />
+                                </FormControl>
+                            </Grid>
 
-                            </Box>
-                            )
-                        }
+
+                            {/* Render items as form fields */}
+                            <FormLabel mt={[1,2]} fontSize={[12, 13]}>Products:</FormLabel>
+                            <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
+
+                                {selectedOrder?.items.map((data, idx) => (
+                                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={[3, 3]} key={idx} p={[3, 4]} mb={3} rounded={"20px"} shadow={'xl'}>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>SKU ID:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.sku_id} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Product Name:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.product_name} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Product ID:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.product_id} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Category:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.category} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Brand:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.brand} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Quantity:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.quantity} readOnly />
+                                        </FormControl>
+                                        <FormControl mb={0}>
+                                            <FormLabel fontSize={[12, 13]}>Total Price:</FormLabel>
+                                            <Input size={["sm"]} type="text" value={data.total_price} readOnly />
+                                        </FormControl>
+                                    </Grid>
+                                ))}
+                            </Grid>
+
+
+                            {/* Grand Total and Payment Status */}
+                            <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
+                                <FormControl mb={2}>
+                                    <FormLabel fontSize={[12, 13]}>Grand Total:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={selectedOrder?.total_amount} readOnly />
+                                </FormControl>
+                                <FormControl mb={2}>
+                                    <FormLabel fontSize={[12, 13]}>Payment Status:</FormLabel>
+                                    <Input size={["sm"]} type="text" value={selectedOrder?.paid ? 'Paid' : 'Pending'} readOnly />
+                                </FormControl>
+                            </Grid>
+                            {/* Close button */}
+                            {/* <Button mt={4} onClick={onClose}>Close</Button> */}
+                        </form>
+                        <Button mt={[2, 3]} onClick={onClose}>Update</Button>
+
                     </ModalBody>
                 </ModalContent>
             </Modal>
+
+
+
 
         </TableContainer>
     );

@@ -61,7 +61,7 @@
             }
         ],
         "total_amount": 120,
-        "paid": true,
+        "paid": false,
         "invoice_no": "Invoice-1212123",
         "invoice_date": "2024-06-02",
         "modified_date": "2024-06-02T13:00:00Z",

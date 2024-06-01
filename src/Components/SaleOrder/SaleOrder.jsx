@@ -64,8 +64,12 @@ const SaleOrder = () => {
     }
 
     return (
-        <Box>
-            <Button onClick={onOpen}>Open Modal</Button>
+        // position="relative" top={["90px", "50px", "150px", '160px']} left={["260px", "50px", "35px", '150px']}
+        <Box >
+            <Box >
+                <Button rounded={'xl'} py={['25px', '10px', '30px']} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'} onClick={onOpen}>Sale Order</Button>
+            </Box>
+
             <Modal
                 isCentered
                 onClose={onClose}

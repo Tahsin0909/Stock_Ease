@@ -142,7 +142,7 @@ const OrderTable = ({ data, isPending, refetch }) => {
                             {/* Close button */}
                             {/* <Button mt={4} onClick={onClose}>Close</Button> */}
                         </form>
-                        <Button mt={[2, 3]} onClick={onClose}>Update</Button>
+                        <Button backgroundColor={'#0039a6'}  textColor={'white'} mt={[2, 3]} onClick={onClose}>Update</Button>
 
                     </ModalBody>
                 </ModalContent>

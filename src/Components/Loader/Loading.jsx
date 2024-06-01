@@ -4,6 +4,9 @@ import './Loading.css'
 
 const Loading = () => {
     return (
+
+        // web page loading state 
+
         <Box display={'flex'} alignItems={'center'} justifyContent={'center'} w={'100vw'} h={'100vh'}>
             <div className="loading-wave">
                 <div className="loading-bar"></div>

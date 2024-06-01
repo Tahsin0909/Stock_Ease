@@ -15,7 +15,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
+
+    // navigate after login 
     const navigate = useNavigate();
+
+
 
     const {
         handleSubmit,
@@ -23,6 +27,8 @@ const Login = () => {
         formState: { errors, isSubmitting },
     } = useForm()
 
+
+    // handle submit 
     function onSubmit(values) {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -35,10 +41,10 @@ const Login = () => {
             }, 1000)
         })
     }
-    // const { colorMode } = useColorMode()
+
 
     return (
-        // color={colorMode === 'light' ? 'blue' : 'white'} 
+
         <Box display={'flex'} alignItems={'center'} justifyContent={'center'} width={'100vw'} height={'100vh'} >
             <Box w={[250, 300, 600]} shadow={'xl'} rounded={'20px'}>
                 <Box display={'flex'} gap={'6px'} alignItems={'center'} justifyContent={'center'} backgroundColor={'#0039a6'} p={[10]} roundedBottom={'100px'}>
@@ -49,6 +55,9 @@ const Login = () => {
                 </Box>
                 <Box p={[4, 10, 10]} >
                     <form onSubmit={handleSubmit(onSubmit)} >
+
+
+                        {/* email  */}
                         <FormControl isInvalid={errors.email}>
                             <FormLabel htmlFor='email'>Email</FormLabel>
                             <Input
@@ -69,7 +78,11 @@ const Login = () => {
                             />
                             <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
                         </FormControl>
+                        {/* email  */}
 
+
+
+                        {/* password  */}
                         <FormControl isInvalid={errors.password}>
                             <FormLabel htmlFor='password'>Password</FormLabel>
                             <Input
@@ -90,9 +103,18 @@ const Login = () => {
                             />
                             <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
                         </FormControl>
+                        {/* password  */}
+
+
+
+
+                        {/* submit button  */}
                         <Button mt={4} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'}>
                             Submit
                         </Button>
+                        {/* submit button  */}
+
+
 
                     </form>
                 </Box>

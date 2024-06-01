@@ -3,6 +3,9 @@
 ## Description
 
 A simple sale order management frontend application built with React. This single-page application (SPA) allows a consumer goods manufacturing company to manage its sales orders efficiently.
+<br/>
+
+[Live Link](https://stockease09.netlify.app/)
 
 ## Features
 
@@ -23,8 +26,8 @@ A simple sale order management frontend application built with React. This singl
 - **Tanstack React Query**: Data fetching and state management library.
 - **React Hook Form**: Library for managing form state and validation.
 - **Chakra-UI**: Component library for styling the application.
-- **Chakra Multiselect**: For multi-select dropdowns compatible with Chakra-UI.
-- **Date-fns**: Utility library for manipulating dates.
+- **React Multiselect**: For multi-select dropdowns compatible with Chakra-UI.
+- **Date-fns**: JavaScript Func for manipulating dates.
 
 ## Getting Started
 
@@ -66,21 +69,27 @@ A simple sale order management frontend application built with React. This singl
 │ │ ├── OrderFormModal.js
 │ │ ├── EditOrderModal.js
 │ │ └── ...
+│ ├── helper/
+│ │ ├── getTime.js
+│ │ ├── time.js
+│ │ └── ...
 │ ├── hooks/
-│ │ ├── useAuth.js
-│ │ ├── useTheme.js
+│ │ ├── useActiveOrder.jsx
+│ │ ├── useCompletedOrder.js
 │ │ └── ...
-│ ├── pages/
-│ │ ├── HomePage.jsx
-│ │ ├── LoginPage.jsx
-│ │ └── ...
-│ ├── services/
-│ │ ├── api.js
-│ │ └── ...
+│ ├── Pages/
+│ │ ├── Home/
+│ │ │   └── Theme.jsx
+│ │ ├── LogIn/
+│ │ │   └── LogIn.jsx
+│ ├── router/
+│ │ ├── router.jsx
+│ │ └── PrivateRoute.jsx
+│ ├── Theme/
+│ │ └── Theme.jsx
 │ ├── App.js
 │ ├── index.js
 │ └── ...
-├── .env
 ├── .gitignore
 ├── package.json
 ├── README.md

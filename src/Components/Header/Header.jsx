@@ -4,6 +4,9 @@ const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode()
     return (
         <Box display={'flex'} alignContent={'center'} justifyContent={'space-between'} >
+
+            {/* logo  */}
+
             <Link to={'/'}>
                 <Box display={'flex'} gap={'6px'} alignItems={'center'} to='/'>
                     <Image w={[8, 8, 8]} src="https://cdn-icons-png.flaticon.com/128/7656/7656411.png" />
@@ -12,6 +15,9 @@ const Header = () => {
                     </Text>
                 </Box>
             </Link>
+            {/* logo  */}
+
+            {/* toggle buttton  */}
             <Box padding='8px' rounded='full' boxShadow={colorMode === 'light' ? 'xl' : 'dark-lg'} width='fit-content' height='fit-content' onClick={toggleColorMode}>
                 {
                     colorMode === 'light' ?
@@ -20,6 +26,7 @@ const Header = () => {
                         : <Image w={[8, 10]} src="https://cdn-icons-png.flaticon.com/128/9689/9689800.png" />
                 }
             </Box >
+            {/* toggle buttton  */}
         </Box>
     );
 };

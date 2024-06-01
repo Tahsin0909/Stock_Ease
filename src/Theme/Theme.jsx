@@ -1,6 +1,8 @@
 import { extendTheme } from "@chakra-ui/react"
 import { MultiSelectTheme } from 'chakra-multiselect'
 
+
+// cuctom theme for dark and light mode 
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,

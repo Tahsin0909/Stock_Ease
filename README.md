@@ -66,17 +66,13 @@ A simple sale order management frontend application built with React. This singl
 │ │ ├── OrderFormModal.js
 │ │ ├── EditOrderModal.js
 │ │ └── ...
-│ ├── context/
-│ │ ├── AuthContext.js
-│ │ ├── ThemeContext.js
-│ │ └── ...
 │ ├── hooks/
 │ │ ├── useAuth.js
 │ │ ├── useTheme.js
 │ │ └── ...
 │ ├── pages/
-│ │ ├── HomePage.js
-│ │ ├── LoginPage.js
+│ │ ├── HomePage.jsx
+│ │ ├── LoginPage.jsx
 │ │ └── ...
 │ ├── services/
 │ │ ├── api.js

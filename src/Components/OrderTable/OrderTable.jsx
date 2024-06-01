@@ -65,7 +65,15 @@ const OrderTable = ({ data, isPending, refetch }) => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
-                        {selectedOrder?.customer_name}
+                        <Box mb={4}>
+                            <Text>
+                                {selectedOrder?.customer_name}
+                            </Text>
+                            <Text >
+                                {selectedOrder?.invoice_no}
+                            </Text>
+                        </Box>
+
                         <Text fontSize={'15px'}>
                             Customer Id : {selectedOrder?.customer_id}
                         </Text>
@@ -76,10 +84,29 @@ const OrderTable = ({ data, isPending, refetch }) => {
                     <ModalCloseButton />
                     <ModalBody>
                         {
-                            selectedOrder?.items.map((data, idx) => <Box key={idx}>
+                            selectedOrder?.items.map((data, idx) => <Box fontSize={'15px'} key={idx}>
                                 <Text>
-                                    {data.product_name}
+                                    SKU ID: {data.sku_id}
                                 </Text>
+                                <Text>
+                                    PRODUCT NAME: {data.product_name}
+                                </Text>
+                                <Text>
+                                    PRODUCT ID {data.product_id}
+                                </Text>
+                                <Text>
+                                    CATEGORY: {data.category}
+                                </Text>
+                                <Text>
+                                    BRAND: {data.brand}
+                                </Text>
+                                <Text>
+                                    QUANTITY: {data.quantity}
+                                </Text>
+                                <Text>
+                                    TOTAL PRICE: {data.total_price}
+                                </Text>
+
                             </Box>
                             )
                         }

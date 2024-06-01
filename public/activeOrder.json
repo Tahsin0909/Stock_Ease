@@ -1,0 +1,98 @@
+[
+    {
+        "order_id": 1001,
+        "customer_id": 11908,
+        "customer_name": "Ram",
+        "order_date": "2024-06-01T10:00:00Z",
+        "items": [
+            {
+                "sku_id": 248,
+                "product_id": 209,
+                "product_name": "Cotton T-Shirt",
+                "category": "Clothing",
+                "brand": "Brand A",
+                "selling_price": 20,
+                "quantity": 3,
+                "total_price": 60
+            },
+            {
+                "sku_id": 246,
+                "product_id": 208,
+                "product_name": "Running Shoes",
+                "category": "Footwear",
+                "brand": "Brand B",
+                "selling_price": 50,
+                "quantity": 1,
+                "total_price": 50
+            }
+        ],
+        "total_amount": 110,
+        "paid": false,
+        "invoice_no": "Invoice-1212122",
+        "invoice_date": "2024-06-01"
+    },
+    {
+        "order_id": 1002,
+        "customer_id": 11908,
+        "customer_name": "Ram",
+        "order_date": "2024-06-02T11:00:00Z",
+        "items": [
+            {
+                "sku_id": 247,
+                "product_id": 210,
+                "product_name": "Leather Wallet",
+                "category": "Accessories",
+                "brand": "Brand C",
+                "selling_price": 35,
+                "quantity": 2,
+                "total_price": 70
+            },
+            {
+                "sku_id": 246,
+                "product_id": 208,
+                "product_name": "Running Shoes",
+                "category": "Footwear",
+                "brand": "Brand B",
+                "selling_price": 50,
+                "quantity": 1,
+                "total_price": 50
+            }
+        ],
+        "total_amount": 120,
+        "paid": true,
+        "invoice_no": "Invoice-1212123",
+        "invoice_date": "2024-06-02"
+    },
+    {
+        "order_id": 1003,
+        "customer_id": 11908,
+        "customer_name": "Ram",
+        "order_date": "2024-06-03T12:00:00Z",
+        "items": [
+            {
+                "sku_id": 248,
+                "product_id": 211,
+                "product_name": "Baseball Cap",
+                "category": "Accessories",
+                "brand": "Brand D",
+                "selling_price": 15,
+                "quantity": 4,
+                "total_price": 60
+            },
+            {
+                "sku_id": 247,
+                "product_id": 212,
+                "product_name": "Denim Jeans",
+                "category": "Clothing",
+                "brand": "Brand E",
+                "selling_price": 40,
+                "quantity": 1,
+                "total_price": 40
+            }
+        ],
+        "total_amount": 100,
+        "paid": false,
+        "invoice_no": "Invoice-1212124",
+        "invoice_date": "2024-06-03"
+    }
+]

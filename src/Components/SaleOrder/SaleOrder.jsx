@@ -29,7 +29,7 @@ const SaleOrder = () => {
     const AuthUser = JSON.parse(getAuthUser)
 
     useEffect(() => {
-        fetch('/public/products.json')
+        fetch('/products.json')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])

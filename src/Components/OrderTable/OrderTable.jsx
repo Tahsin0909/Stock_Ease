@@ -1,49 +1,92 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
 import TableLoader from "../Loader/TableLoader";
+import { time } from "../../Helper/time";
+import { HiDotsVertical } from "react-icons/hi";
+import { FaUser } from "react-icons/fa";
+import { useState } from "react";
+
+
 
 const OrderTable = ({ data, isPending, refetch }) => {
-    console.log(data);
+    const { colorMode } = useColorMode()
+
+    //modal
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [selectedOrder, setSelectedOrder] = useState(null);
+
+
+    const handleDotClick = (order) => {
+        setSelectedOrder(order);
+        onOpen();
+    };
+
+
+
     return (
         <TableContainer>
             {
                 isPending ? <TableLoader />
                     :
                     <Table variant='striped' colorScheme='teal'>
-                        <TableCaption>Imperial to metric conversion factors</TableCaption>
                         <Thead>
                             <Tr>
-                                <Th>ddd</Th>
-                                <Th>into</Th>
-                                <Th isNumeric>multiply by</Th>
+                                <Th>ID</Th>
+                                <Th>CUSTOMER NAME</Th>
+                                <Th>PRICE</Th>
+                                <Th>LAST MODIFIED</Th>
+                                <Th>EDIT / VIEW</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td isNumeric>25.4</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>feet</Td>
-                                <Td>centimetres (cm)</Td>
-                                <Td isNumeric>30.48</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>yards</Td>
-                                <Td>metres (m)</Td>
-                                <Td isNumeric>0.91444</Td>
-                            </Tr>
+                            {
+                                data?.map((order, idx) => <Tr key={idx}>
+                                    <Td>{idx + 1}</Td>
+                                    <Td display={'flex'} alignItems={'center'} gap={1}> <FaUser color={colorMode === 'light' ? 'blue' : 'white'} /> {order.customer_name}</Td>
+                                    <Td>$ {order.total_amount}</Td>
+                                    <Td>{time(order.modified_date)}</Td>
+                                    <Td>
+
+                                        <HiDotsVertical onClick={() => handleDotClick(order)} color={colorMode === 'light' ? 'blue' : 'white'} />
+                                    </Td>
+                                </Tr>)
+                            }
                         </Tbody>
-                        <Tfoot>
-                            <Tr>
-                                <Th>To convert</Th>
-                                <Th>into</Th>
-                                <Th isNumeric>multiply by</Th>
-                            </Tr>
-                        </Tfoot>
                     </Table>
             }
+            {/* <Button onClick={onOpen}>Open Modal</Button> */}
+            <Modal
+                isCentered
+                onClose={onClose}
+                isOpen={isOpen}
+                motionPreset='slideInBottom'
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>
+                        {selectedOrder?.customer_name}
+                        <Text fontSize={'15px'}>
+                            Customer Id : {selectedOrder?.customer_id}
+                        </Text>
+                        <Text fontSize={'15px'}>
+                            Order Date: {time(selectedOrder?.order_date)}
+                        </Text>
+                    </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        {
+                            selectedOrder?.items.map((data, idx) => <Box key={idx}>
+                                <Text>
+                                    {data.product_name}
+                                </Text>
+                            </Box>
+                            )
+                        }
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+
         </TableContainer>
     );
 };

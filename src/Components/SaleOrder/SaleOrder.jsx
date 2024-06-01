@@ -1,7 +1,36 @@
 import { Box, Button, Center, FormControl, FormLabel, Grid, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useDisclosure } from "@chakra-ui/react";
+import Multiselect from "multiselect-react-dropdown";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const SaleOrder = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const [products, setProducts] = useState(null)
+    const [selected, setSelected] = useState(null)
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isSubmitting },
+    } = useForm()
+
+
+
+
+    useEffect(() => {
+        fetch('/public/products.json')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
+
+
+
+
+
+    function onSubmit(data) {
+        console.log(data, selected);
+    }
+
     return (
         <Box>
             <Button onClick={onOpen}>Open Modal</Button>
@@ -16,81 +45,56 @@ const SaleOrder = () => {
                 <ModalOverlay />
                 <ModalContent >
                     <ModalBody>
-                        <form >
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]} mb={4}>
                                 <FormControl >
                                     <FormLabel fontSize={[12, 13]}>Customer Name:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
+                                    <Input  {...register('name')} size={["sm"]} type="text" />
                                 </FormControl>
                                 <FormControl >
                                     <FormLabel fontSize={[12, 13]}>Invoice No:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
+                                    <Input  {...register('invoice')} size={["sm"]} type="text" />
                                 </FormControl>
                             </Grid>
                             <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
                                 <FormControl >
                                     <FormLabel fontSize={[12, 13]}>Customer ID:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
+                                    <Input  {...register('id')} size={["sm"]} type="text" />
                                 </FormControl>
                                 <FormControl >
                                     <FormLabel fontSize={[12, 13]}>Order Date:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
+                                    <Input  {...register('date')} size={["sm"]} type="text" />
                                 </FormControl>
                             </Grid>
 
 
                             {/* Render items as form fields */}
-                            <FormLabel mt={[1, 2]} fontSize={[12, 13]}>Products:</FormLabel>
-                            {/* <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}> */}
-
-                                {/* {selectedOrder?.items.map((data, idx) => (
-                                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={[3, 3]} key={idx} p={[3, 4]} mb={3} rounded={"20px"} shadow={'xl'}>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>SKU ID:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Product Name:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Product ID:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Category:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Brand:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Quantity:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                        <FormControl mb={0}>
-                                            <FormLabel fontSize={[12, 13]}>Total Price:</FormLabel>
-                                            <Input size={["sm"]} type="text"   />
-                                        </FormControl>
-                                    </Grid>
-                                ))}
-                            </Grid> */}
+                            <Box mb={3} rounded={"20px"}>
+                                <FormControl mb={0}>
+                                    <FormLabel fontSize={[12, 13]}>Product Name:</FormLabel>
+                                    {/* <Input size={["sm"]} type="text" /> */}
+                                    <Multiselect
+                                        {...register('products')}
+                                        options={products} // Options to display in the dropdown
+                                        // selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                                        onSelect={setSelected}
+                                        // onRemove={this.onRemove} // Function will trigger on remove event
+                                        displayValue={"product_name"} // Property name to display in the dropdown options
+                                    />
+                                </FormControl>
+                            </Box>
 
 
                             {/* Grand Total and Payment Status */}
-                            <Grid templateColumns='repeat(2, 1fr)' gap={[4, 8]}>
-                                <FormControl mb={2}>
-                                    <FormLabel fontSize={[12, 13]}>Grand Total:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
-                                </FormControl>
+                            <Box>
                                 <FormControl mb={2}>
                                     <FormLabel fontSize={[12, 13]}>Payment Status:</FormLabel>
-                                    <Input size={["sm"]} type="text"   />
+                                    <Input  {...register('payments')} size={["sm"]} type="text" />
                                 </FormControl>
-                            </Grid>
-                            {/* Close button */}
-                            {/* <Button mt={4} onClick={onClose}>Close</Button> */}
+                            </Box>
+                            <Button mt={4} backgroundColor={'#0039a6'} isLoading={isSubmitting} type='submit' textColor={'white'}>
+                                Submit
+                            </Button>
                         </form>
                         <Button mt={[2, 3]} onClick={onClose}>Update</Button>
 

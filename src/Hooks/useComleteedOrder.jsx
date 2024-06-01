@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useActiveOrder = () => {
+const useCompletedOrder = () => {
     // console.log(" Iam calling");
-    const { isPending, data: activeOrderData, refetch } = useQuery({
-        queryKey: ['activeOrder'],
+    const { isPending: pending, data: CompletedOrderData} = useQuery({
+        queryKey: ['CompletedOrder'],
         queryFn: async () => {
 
-            const response = await fetch('../../public/activeOrder.json')
+            const response = await fetch('../../public/completedOrder.json')
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -15,7 +15,7 @@ const useActiveOrder = () => {
         }
     });
 
-    return [activeOrderData, isPending, refetch];
+    return [CompletedOrderData, pending];
 };
 
-export default useActiveOrder;
+export default useCompletedOrder;

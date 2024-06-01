@@ -30,8 +30,7 @@
         "paid": false,
         "invoice_no": "Invoice-1212122",
         "invoice_date": "2024-06-01",
-        "modified_date": "2024-06-01T15:00:00Z",
-        "adding_date": "2024-06-01T08:00:00Z"
+        "modified_date": "2024-06-01T15:00:00Z"
     },
     {
         "order_id": 1002,
@@ -64,8 +63,7 @@
         "paid": false,
         "invoice_no": "Invoice-1212123",
         "invoice_date": "2024-06-02",
-        "modified_date": "2024-06-02T13:00:00Z",
-        "adding_date": "2024-06-02T09:00:00Z"
+        "modified_date": "2024-06-02T13:00:00Z"
     },
     {
         "order_id": 1003,
@@ -98,7 +96,6 @@
         "paid": false,
         "invoice_no": "Invoice-1212124",
         "invoice_date": "2024-06-03",
-        "modified_date": "2024-06-03T14:00:00Z",
-        "adding_date": "2024-06-03T10:00:00Z"
+        "modified_date": "2024-06-03T14:00:00Z"
     }
 ]
